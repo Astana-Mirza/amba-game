@@ -1,0 +1,427 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://scenes/scripts/objects/Mirza.gd" type="Script" id=1]
+[ext_resource path="res://scenes/textures/mirza/mirza_run1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/textures/mirza/mirza_run2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/textures/mirza/mirza_run3.png" type="Texture" id=4]
+[ext_resource path="res://scenes/textures/mirza/mirza_run4.png" type="Texture" id=5]
+[ext_resource path="res://scenes/textures/mirza/mirza_static1.png" type="Texture" id=6]
+[ext_resource path="res://scenes/textures/mirza/mirza_static2.png" type="Texture" id=7]
+[ext_resource path="res://scenes/textures/mirza/mirza_jump1.png" type="Texture" id=8]
+[ext_resource path="res://scenes/textures/mirza/mirza_jump2.png" type="Texture" id=9]
+[ext_resource path="res://scenes/textures/mirza/mirza_jump3.png" type="Texture" id=10]
+[ext_resource path="res://scenes/textures/mirza/mirza_attack1.png" type="Texture" id=11]
+[ext_resource path="res://scenes/textures/mirza/mirza_attack2.png" type="Texture" id=12]
+[ext_resource path="res://scenes/textures/mirza/mirza_jump_and_shoot1.png" type="Texture" id=13]
+[ext_resource path="res://scenes/textures/mirza/mirza_jump_and_shoot2.png" type="Texture" id=14]
+[ext_resource path="res://scenes/textures/mirza/mirza_jump_and_shoot3.png" type="Texture" id=15]
+[ext_resource path="res://scenes/textures/mirza/mirza_run_and_shoot1.png" type="Texture" id=16]
+[ext_resource path="res://scenes/textures/mirza/mirza_run_and_shoot2.png" type="Texture" id=17]
+[ext_resource path="res://scenes/textures/mirza/mirza_run_and_shoot3.png" type="Texture" id=18]
+[ext_resource path="res://scenes/textures/mirza/mirza_run_and_shoot4.png" type="Texture" id=19]
+[ext_resource path="res://scenes/textures/mirza/mirza_death.png" type="Texture" id=20]
+[ext_resource path="res://scenes/textures/env/HUD.png" type="Texture" id=21]
+[ext_resource path="res://scenes/textures/env/life.png" type="Texture" id=22]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+cull_mode = 2
+polygon = PoolVector2Array( -13.304, -53.8093, 7.68658, -54.9141, 5.5754, -36.8685, 10.396, -31.1972, 20.9651, 57.1066, -26.3949, 57.6051, -19.9452, -33.7493, -11.1547, -37.7192 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "mirza",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 7, 8 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 12, 13 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "mirza_shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 11 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "mirza_shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MirzaCollision:shape:extents")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 35.56, 79.947 ), Vector2( 32.895, 79.287 ), Vector2( 36.837, 78.827 ), Vector2( 34.099, 80.95 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MirzaCollision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -4.987, -0.75 ), Vector2( -8.58, 0.5 ), Vector2( -4.292, 1 ), Vector2( -8.038, -0.5 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 1.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 14, 15, 16, 17, 14, 15, 16, 17 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MirzaCollision:shape:extents")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 35.56, 79.947 ), Vector2( 32.895, 79.287 ), Vector2( 36.837, 78.827 ), Vector2( 34.099, 80.95 ), Vector2( 35.56, 79.947 ), Vector2( 32.895, 79.287 ), Vector2( 36.837, 78.827 ), Vector2( 34.099, 80.95 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MirzaCollision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -4.987, -0.75 ), Vector2( -8.58, 0.5 ), Vector2( -4.292, 1 ), Vector2( -8.038, -0.5 ), Vector2( -4.987, -0.75 ), Vector2( -8.58, 0.5 ), Vector2( -4.292, 1 ), Vector2( -8.038, -0.5 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "mirza_shoot"
+}, {
+"args": [  ],
+"method": "mirza_shoot"
+}, {
+"args": [  ],
+"method": "mirza_shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MirzaCollision:shape:extents")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 31.735, 78 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MirzaCollision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2.091, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 9, 10 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "mirza_shoot"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 31.735, 78 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 28.2292, 59.9998 )
+
+[node name="Mirza" type="KinematicBody2D" groups=[
+"player",
+]]
+collision_layer = 2
+script = ExtResource( 1 )
+charname = "Астана-Мырза"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 2
+z_index = 100
+current = true
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+offset_v = 1.0
+drag_margin_top = 0.5
+drag_margin_bottom = 0.4
+
+[node name="Texture" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+animation = "mirza"
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "mirza_stand"
+anims/mirza_fall = SubResource( 3 )
+anims/mirza_fall_and_shoot = SubResource( 4 )
+anims/mirza_jump = SubResource( 5 )
+anims/mirza_jump_and_shoot = SubResource( 6 )
+anims/mirza_run = SubResource( 7 )
+anims/mirza_run_and_shoot = SubResource( 8 )
+anims/mirza_stand = SubResource( 9 )
+anims/mirza_stand_and_shoot = SubResource( 10 )
+
+[node name="MirzaCollision" type="CollisionShape2D" parent="."]
+position = Vector2( -2.091, 0 )
+scale = Vector2( 0.75, 0.75 )
+shape = SubResource( 11 )
+
+[node name="HitDetector" type="Area2D" parent="."]
+
+[node name="HitCollision" type="CollisionShape2D" parent="HitDetector"]
+modulate = Color( 0.32549, 0.831373, 0.117647, 1 )
+position = Vector2( -4.97631, 1.16292 )
+shape = SubResource( 12 )
+
+[node name="BlinkTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HitTimer" type="Timer" parent="."]
+
+[node name="PushTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="RayCasts" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Ray1" type="RayCast2D" parent="RayCasts"]
+position = Vector2( -24.1477, 59.1603 )
+enabled = true
+cast_to = Vector2( 0, 1 )
+
+[node name="Ray2" type="RayCast2D" parent="RayCasts"]
+position = Vector2( -2.04751, 58.9607 )
+enabled = true
+cast_to = Vector2( 0, 1 )
+
+[node name="Ray3" type="RayCast2D" parent="RayCasts"]
+position = Vector2( 20.0528, 59.0477 )
+enabled = true
+cast_to = Vector2( 0, 1 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="HUD" type="Sprite" parent="HUD"]
+scale = Vector2( 1.02, 1 )
+texture = ExtResource( 21 )
+centered = false
+
+[node name="HP" type="HBoxContainer" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="life1" type="Sprite" parent="HUD/HP"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 22 )
+centered = false
+
+[node name="life2" type="Sprite" parent="HUD/HP"]
+position = Vector2( 50, 0 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 22 )
+centered = false
+
+[node name="life3" type="Sprite" parent="HUD/HP"]
+position = Vector2( 100, 0 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 22 )
+centered = false
+
+[node name="life4" type="Sprite" parent="HUD/HP"]
+position = Vector2( 150, 0 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 22 )
+centered = false
+
+[node name="life5" type="Sprite" parent="HUD/HP"]
+position = Vector2( 200, 0 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 22 )
+centered = false
+[connection signal="body_entered" from="HitDetector" to="." method="_hit_body_entered"]
+[connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timeout"]
+[connection signal="timeout" from="PushTimer" to="." method="_on_push_timeout"]

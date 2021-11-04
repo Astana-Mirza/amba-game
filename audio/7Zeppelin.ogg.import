@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/7Zeppelin.ogg-1f25fb645662e8452f5ec9084a218acc.oggstr"
+
+[deps]
+
+source_file="res://audio/7Zeppelin.ogg"
+dest_files=[ "res://.import/7Zeppelin.ogg-1f25fb645662e8452f5ec9084a218acc.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

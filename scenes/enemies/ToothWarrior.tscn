@@ -1,0 +1,116 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/scripts/objects/ToothWarrior.gd" type="Script" id=1]
+[ext_resource path="res://scenes/textures/enemies/tooth_warrior1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/textures/enemies/tooth_warrior2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/textures/enemies/tooth_warrior3.png" type="Texture" id=4]
+[ext_resource path="res://scenes/textures/enemies/tooth_warrior4.png" type="Texture" id=5]
+[ext_resource path="res://scenes/textures/enemies/tooth_warrior5.png" type="Texture" id=6]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( -24.7418, -24.2025, -21.8255, -59.5853, 9.95168, -60.6446, 16.9544, -37.7924, 17.896, -15.0973, 13.659, -5.29938, 20.8089, 3.70414, 17.881, 15.3317, 65.1367, 5.4481, 58.9595, 15.0228, 6.76204, 29.5392, 14.1747, 61.043, -19.8, 60.1165, -17.9468, 34.481, -24.7418, 33.8633, -61.8051, 40.3494, -35.243, 25.8329, -31.2278, 5.75697, -18.8734, -3.50886 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 39.5306, 58.4027 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 39.4333, 58.4 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "tooth_warrior_alive"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "tooth_warrior_death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="ToothWarrior" type="KinematicBody2D" groups=[
+"enemy_body",
+]]
+collision_layer = 8
+motion/sync_to_physics = true
+script = ExtResource( 1 )
+is_trigon = false
+follow_smoothness = 1.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )
+
+[node name="Texture" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+flip_h = true
+
+[node name="ToothWarriorCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 5.07411, 0.122837 )
+shape = SubResource( 3 )
+
+[node name="StompDetector" type="Area2D" parent="."]
+
+[node name="StompCollision" type="CollisionShape2D" parent="StompDetector"]
+modulate = Color( 0.129412, 0.870588, 0, 1 )
+position = Vector2( 4.43332, 0 )
+shape = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+repeat = true
+playback_process_mode = 0
+playback/repeat = true
+
+[node name="FlipTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "tooth_warrior_alive"
+anims/tooth_warrior_alive = SubResource( 5 )
+anims/tooth_warrior_death = SubResource( 6 )
+[connection signal="body_entered" from="StompDetector" to="." method="_on_stomp_body_entered"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]
+[connection signal="timeout" from="FlipTimer" to="." method="_on_flip_timeout"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/textures/backgrounds/collector_default.png" type="Texture" id=1]
+
+[node name="Background" type="CanvasLayer"]
+
+[node name="collector_default" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+centered = false

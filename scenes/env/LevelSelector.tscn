@@ -1,0 +1,216 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scenes/lang/Rus_Theme_Font.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/scripts/env/LevelSelector.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.352941, 0.372549, 0.819608, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.235294, 0.247059, 0.517647, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.352941, 0.372549, 0.819608, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.235294, 0.247059, 0.517647, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.352941, 0.372549, 0.819608, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.235294, 0.247059, 0.517647, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.352941, 0.372549, 0.819608, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.235294, 0.247059, 0.517647, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.819608, 0.352941, 0.505882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.482353, 0.207843, 0.298039, 1 )
+
+[sub_resource type="InputEventAction" id=11]
+action = "ui_cancel"
+pressed = true
+
+[sub_resource type="ShortCut" id=12]
+shortcut = SubResource( 11 )
+
+[node name="LevelSelector" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="Level0" type="Button" parent="Panel"]
+margin_left = 153.0
+margin_top = 26.0
+margin_right = 549.0
+margin_bottom = 77.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+text = "0. Обучение"
+
+[node name="Level1" type="Button" parent="Panel"]
+margin_left = 153.0
+margin_top = 90.0
+margin_right = 549.0
+margin_bottom = 141.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+disabled = true
+text = "1. Улицы Астаны"
+
+[node name="Level2" type="Button" parent="Panel"]
+margin_left = 153.0
+margin_top = 154.0
+margin_right = 549.0
+margin_bottom = 205.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+disabled = true
+text = "2. Старый город"
+
+[node name="Level3" type="Button" parent="Panel"]
+margin_left = 153.0
+margin_top = 218.0
+margin_right = 549.0
+margin_bottom = 269.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "3. Ловушки Ночного Наурыза"
+
+[node name="Level4" type="Button" parent="Panel"]
+margin_left = 153.0
+margin_top = 282.0
+margin_right = 549.0
+margin_bottom = 333.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "4. Коллектор"
+
+[node name="Level5" type="Button" parent="Panel"]
+margin_left = 153.0
+margin_top = 346.0
+margin_right = 549.0
+margin_bottom = 397.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "5. Секретные таинственные печати"
+
+[node name="Level6" type="Button" parent="Panel"]
+margin_left = 153.0
+margin_top = 410.0
+margin_right = 549.0
+margin_bottom = 461.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "6. Запах кариеса по утрам"
+
+[node name="Level7" type="Button" parent="Panel"]
+margin_left = 707.0
+margin_top = 26.0
+margin_right = 1103.0
+margin_bottom = 77.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "7. Дирижабль! Ага!"
+
+[node name="Level8" type="Button" parent="Panel"]
+margin_left = 707.0
+margin_top = 90.0
+margin_right = 1103.0
+margin_bottom = 141.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "8. Трюм"
+
+[node name="Level9" type="Button" parent="Panel"]
+margin_left = 707.0
+margin_top = 154.0
+margin_right = 1103.0
+margin_bottom = 205.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "9. Воздушная дуэль"
+
+[node name="Level10" type="Button" parent="Panel"]
+margin_left = 707.0
+margin_top = 218.0
+margin_right = 1103.0
+margin_bottom = 269.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "10. Всё, что случается в Астане..."
+
+[node name="Level11" type="Button" parent="Panel"]
+margin_left = 707.0
+margin_top = 282.0
+margin_right = 1103.0
+margin_bottom = 333.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "11. ...остаётся в Астане"
+
+[node name="Level12" type="Button" parent="Panel"]
+margin_left = 707.0
+margin_top = 346.0
+margin_right = 1103.0
+margin_bottom = 397.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+disabled = true
+text = "12. Финал"
+
+[node name="Level13" type="Button" parent="Panel"]
+visible = false
+margin_left = 707.0
+margin_top = 410.0
+margin_right = 1103.0
+margin_bottom = 461.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+text = "Чаепитие в юрте"
+
+[node name="Close" type="Button" parent="Panel"]
+margin_left = 553.0
+margin_top = 607.0
+margin_right = 703.0
+margin_bottom = 635.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+shortcut_in_tooltip = false
+shortcut = SubResource( 12 )
+text = "Закрыть"
+[connection signal="pressed" from="Panel/Level0" to="." method="_on_Level0_pressed"]
+[connection signal="pressed" from="Panel/Level1" to="." method="_on_Level1_pressed"]
+[connection signal="pressed" from="Panel/Level2" to="." method="_on_Level2_pressed"]
+[connection signal="pressed" from="Panel/Level3" to="." method="_on_Level3_pressed"]
+[connection signal="pressed" from="Panel/Level4" to="." method="_on_Level4_pressed"]
+[connection signal="pressed" from="Panel/Level5" to="." method="_on_Level5_pressed"]
+[connection signal="pressed" from="Panel/Level6" to="." method="_on_Level6_pressed"]
+[connection signal="pressed" from="Panel/Level7" to="." method="_on_Level7_pressed"]
+[connection signal="pressed" from="Panel/Level8" to="." method="_on_Level8_pressed"]
+[connection signal="pressed" from="Panel/Level9" to="." method="_on_Level9_pressed"]
+[connection signal="pressed" from="Panel/Level10" to="." method="_on_Level10_pressed"]
+[connection signal="pressed" from="Panel/Level11" to="." method="_on_Level11_pressed"]
+[connection signal="pressed" from="Panel/Level12" to="." method="_on_Level12_pressed"]
+[connection signal="pressed" from="Panel/Level13" to="." method="_on_Bonus_pressed"]
+[connection signal="pressed" from="Panel/Close" to="." method="_on_close_pressed"]

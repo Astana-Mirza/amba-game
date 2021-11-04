@@ -1,0 +1,170 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://scenes/scripts/levels/11Baiterek2.gd" type="Script" id=1]
+[ext_resource path="res://scenes/env/Pause.tscn" type="PackedScene" id=2]
+[ext_resource path="res://audio/11Baiterek2.ogg" type="AudioStream" id=3]
+[ext_resource path="res://audio/BaiterekLaser.wav" type="AudioStream" id=4]
+[ext_resource path="res://scenes/env/DeathScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/backgrounds/BackgroundFourthAct.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/textures/backgrounds/baiterek_top.png" type="Texture" id=7]
+[ext_resource path="res://scenes/textures/backgrounds/baiterek_laser.png" type="Texture" id=8]
+[ext_resource path="res://scenes/env/HoloWall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/env/TileMap.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/env/Lever.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/env/Button.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/enemies/Genie.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/enemies/Cannon.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/enemies/HipptyHop.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/env/KoumissBottle.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/env/Target.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/env/MovingPlatform.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Mirza.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/env/Finish.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/env/Dialogue_node.tscn" type="PackedScene" id=21]
+
+[node name="11Baiterek2" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Pause" parent="." instance=ExtResource( 2 )]
+
+[node name="Music" type="AudioStreamPlayer" parent="Pause"]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"
+
+[node name="Laser" type="AudioStreamPlayer" parent="Pause"]
+stream = ExtResource( 4 )
+bus = "Effects"
+
+[node name="DeathScreen" parent="." instance=ExtResource( 5 )]
+
+[node name="BackgroundFourthAct" parent="." instance=ExtResource( 6 )]
+
+[node name="BaiterekTop" type="Sprite" parent="."]
+editor/display_folded = true
+position = Vector2( 781, -2552.88 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+
+[node name="BaiterekLaser" type="Sprite" parent="BaiterekTop"]
+visible = false
+show_behind_parent = true
+position = Vector2( 297.768, -394.618 )
+texture = ExtResource( 8 )
+
+[node name="HoloWall1" parent="." instance=ExtResource( 9 )]
+position = Vector2( 795.353, -2110.28 )
+rotation = 1.5708
+
+[node name="TileMap" parent="." instance=ExtResource( 10 )]
+editor/display_folded = true
+tile_data = PoolIntArray( -2949101, 26, 0, -2949100, 15, 0, -2949099, 15, 0, -2949098, 15, 0, -2949097, 15, 0, -2949096, 15, 0, -2949095, 15, 0, -2949094, 25, 0, -2752511, 27, 0, -2752496, 27, 0, -2424828, 27, 0, -2424812, 27, 0, -2228218, 26, 0, -2228217, 15, 0, -2228216, 15, 0, -2228215, 15, 0, -2228214, 25, 0, -2228210, 26, 0, -2228209, 15, 0, -2228208, 15, 0, -2228207, 15, 0, -2228206, 25, 0, -2162682, 20, 0, -2162681, 20, 0, -2162680, 20, 0, -2162679, 20, 0, -2162678, 20, 0, -2162674, 20, 0, -2162673, 20, 0, -2162672, 20, 0, -2162671, 20, 0, -2162670, 20, 0, -458737, 26, 0, -458736, 25, 0, -327649, 20, 0, -262113, 20, 0, -196577, 20, 0, -131064, 26, 0, -131063, 25, 0, 131058, 20, 0, 196594, 20, 0, 262130, 20, 0, 196624, 26, 0, 196625, 25, 0, 589829, 26, 0, 589830, 15, 0, 589831, 15, 0, 589832, 15, 0, 589833, 15, 0, 589834, 15, 0, 589835, 15, 0, 589836, 15, 0, 589837, 15, 0, 589838, 15, 0, 589839, 15, 0, 589840, 15, 0, 589841, 15, 0, 589842, 25, 0 )
+
+[node name="Spikes" parent="TileMap" index="1"]
+tile_data = PoolIntArray( -393185, 0, 0, -262158, 0, 0, 65522, 0, 0, 65566, 0, 0, 65567, 0, 0 )
+
+[node name="Lever1" parent="." instance=ExtResource( 11 )]
+position = Vector2( 288.404, -2372.83 )
+
+[node name="Lever2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1316.28, -2373.87 )
+
+[node name="Button" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1317.75, -2937.28 )
+z_index = 0
+enabled = false
+
+[node name="Genie1" parent="." instance=ExtResource( 13 )]
+position = Vector2( 959.123, -2232.41 )
+move_to = Vector2( 150, 0 )
+
+[node name="Genie2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 643.373, -2234 )
+move_to = Vector2( -150, 0 )
+
+[node name="Genie3" parent="." instance=ExtResource( 13 )]
+position = Vector2( 545.668, -907.709 )
+
+[node name="Genie4" parent="." instance=ExtResource( 13 )]
+position = Vector2( 963.964, -1354.09 )
+move_to = Vector2( -300, 0 )
+
+[node name="Genie5" parent="." instance=ExtResource( 13 )]
+position = Vector2( 963.933, -1823.82 )
+move_to = Vector2( -300, 0 )
+
+[node name="Cannon1" parent="." instance=ExtResource( 14 )]
+position = Vector2( 2000, 159.495 )
+flip_h = true
+
+[node name="Cannon2" parent="." instance=ExtResource( 14 )]
+position = Vector2( -853.343, -230.861 )
+
+[node name="HipptyHop1" parent="." instance=ExtResource( 15 )]
+position = Vector2( 1312.8, -2447.68 )
+
+[node name="HipptyHop2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 287.516, -2445.88 )
+
+[node name="KoumissBottle1" parent="." instance=ExtResource( 16 )]
+position = Vector2( 1382.04, 713.369 )
+
+[node name="KoumissBottle2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 95.2019, -2703.82 )
+
+[node name="KoumissBottle3" parent="." instance=ExtResource( 16 )]
+position = Vector2( 829.174, -3349.25 )
+
+[node name="Target1" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1313.44, -922.19 )
+
+[node name="Target2" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1313.44, -1366.65 )
+
+[node name="Target3" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1313.44, -1837.2 )
+
+[node name="MovingPlatform" parent="." instance=ExtResource( 18 )]
+position = Vector2( 764.166, -583.986 )
+move_points = [ Vector2( 0, -1200 ) ]
+
+[node name="Mirza" parent="." instance=ExtResource( 19 )]
+position = Vector2( 437.465, 510.831 )
+critical_y_up = -4500.0
+camera_bounds = [ 0, -3500, 1850, 720 ]
+
+[node name="Finish" parent="." instance=ExtResource( 20 )]
+position = Vector2( 2927.59, -3618.52 )
+next_level = "12The_End"
+number_of_level = 11
+
+[node name="dialogue_node" parent="." instance=ExtResource( 21 )]
+position = Vector2( 1558.4, -3075.74 )
+scale = Vector2( 1, 2 )
+actor_1_text_color = Color( 1, 0.286275, 0.286275, 1 )
+actor_1 = NodePath("..")
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_mirza", "Хе-хе, вроде подорвал.", "actor_1", "Ты слышишь меня, Астана-Мырза?", "Думал, что я просто буду сидеть в своём корабле? Думал, что я лёгкая добыча?", "ХА-ХА-ХА-ХА! Глупец!", "Я жду тебя во Дворце мира и согласия Астаны", "actor_mirza", "Пришло время разобраться с этим раз и навсегда.", "end_dialogue" ]
+active = false
+
+[node name="ShakeTimer" type="Timer" parent="."]
+wait_time = 0.1
+[connection signal="lever_pressed" from="Lever1" to="." method="_on_lever1_pressed"]
+[connection signal="lever_pressed" from="Lever2" to="." method="_on_lever2_pressed"]
+[connection signal="button_pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="killed" from="Genie1" to="." method="_on_enemy_killed"]
+[connection signal="killed" from="Genie2" to="." method="_on_enemy_killed"]
+[connection signal="killed" from="Genie3" to="." method="_on_enemy_killed"]
+[connection signal="killed" from="Genie4" to="." method="_on_enemy_killed"]
+[connection signal="killed" from="Genie5" to="." method="_on_enemy_killed"]
+[connection signal="killed" from="HipptyHop1" to="." method="_on_enemy_killed"]
+[connection signal="killed" from="HipptyHop2" to="." method="_on_enemy_killed"]
+[connection signal="collected" from="KoumissBottle1" to="." method="_on_koumiss_collected"]
+[connection signal="collected" from="KoumissBottle2" to="." method="_on_koumiss_collected"]
+[connection signal="collected" from="KoumissBottle3" to="." method="_on_koumiss_collected"]
+[connection signal="target_shot" from="Target1" to="." method="_on_target1_shot"]
+[connection signal="target_shot" from="Target2" to="." method="_on_target2_shot"]
+[connection signal="target_shot" from="Target3" to="." method="_on_target3_shot"]
+[connection signal="timeout" from="ShakeTimer" to="." method="_on_ShakeTimer_timeout"]
+
+[editable path="TileMap"]

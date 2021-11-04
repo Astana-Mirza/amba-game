@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/textures/backgrounds/act3_sky.png" type="Texture" id=1]
+[ext_resource path="res://scenes/textures/backgrounds/background_3act.png" type="Texture" id=2]
+
+[node name="BackgroundThirdAct" type="CanvasLayer"]
+layer = -100
+
+[node name="act3_sky" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="background_3act" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -165.202, -3140.97 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 3408, 3408 )

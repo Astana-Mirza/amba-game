@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://scenes/scripts/env/DeathScreen.gd" type="Script" id=1]
+[ext_resource path="res://scenes/lang/Rus_Theme_Font.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/textures/backgrounds/death_screen.png" type="Texture" id=3]
+[ext_resource path="res://audio/loose/1.ogg" type="AudioStream" id=4]
+[ext_resource path="res://audio/loose/2.ogg" type="AudioStream" id=5]
+[ext_resource path="res://audio/loose/3.ogg" type="AudioStream" id=6]
+[ext_resource path="res://audio/loose/4.ogg" type="AudioStream" id=7]
+[ext_resource path="res://audio/loose/5.ogg" type="AudioStream" id=8]
+[ext_resource path="res://audio/loose/6.ogg" type="AudioStream" id=9]
+[ext_resource path="res://audio/loose/7.ogg" type="AudioStream" id=10]
+[ext_resource path="res://audio/loose/8.ogg" type="AudioStream" id=11]
+[ext_resource path="res://audio/loose/9.ogg" type="AudioStream" id=12]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.352941, 0.372549, 0.819608, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.235294, 0.247059, 0.517647, 1 )
+
+[sub_resource type="InputEventAction" id=3]
+action = "pay_respects"
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.819608, 0.352941, 0.505882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.482353, 0.207843, 0.298039, 1 )
+
+[node name="DeathScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="DeathScreenContainer" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 2 )
+
+[node name="death_screen" type="Sprite" parent="DeathScreenContainer"]
+position = Vector2( 640, 360 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="DeathScreenContainer"]
+margin_left = 611.922
+margin_top = 243.309
+margin_right = 701.922
+margin_bottom = 265.309
+rect_scale = Vector2( 1.2, 1.2 )
+text = "Вы погибли"
+
+[node name="CenterContainer" type="CenterContainer" parent="DeathScreenContainer"]
+margin_left = 571.0
+margin_top = 341.0
+margin_right = 710.0
+margin_bottom = 409.0
+rect_scale = Vector2( 1, 0.937685 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeathScreenContainer/CenterContainer"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 132.0
+margin_bottom = 64.0
+alignment = 1
+
+[node name="Restart" type="Button" parent="DeathScreenContainer/CenterContainer/VBoxContainer"]
+margin_right = 126.0
+margin_bottom = 28.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+shortcut_in_tooltip = false
+shortcut = SubResource( 4 )
+text = "Начать заново"
+
+[node name="Quit" type="Button" parent="DeathScreenContainer/CenterContainer/VBoxContainer"]
+margin_top = 32.0
+margin_right = 126.0
+margin_bottom = 60.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+text = "Выход в меню"
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Death1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 4 )
+bus = "Effects"
+
+[node name="Death2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 5 )
+bus = "Effects"
+
+[node name="Death3" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 6 )
+bus = "Effects"
+
+[node name="Death4" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 7 )
+bus = "Effects"
+
+[node name="Death5" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 8 )
+bus = "Effects"
+
+[node name="Death6" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 9 )
+bus = "Effects"
+
+[node name="Death7" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 10 )
+bus = "Effects"
+
+[node name="Death8" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 11 )
+bus = "Effects"
+
+[node name="Death9" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 12 )
+bus = "Effects"
+[connection signal="pressed" from="DeathScreenContainer/CenterContainer/VBoxContainer/Restart" to="." method="_restart_pressed"]
+[connection signal="pressed" from="DeathScreenContainer/CenterContainer/VBoxContainer/Quit" to="." method="_quit_pressed"]

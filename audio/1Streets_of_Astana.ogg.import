@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/1Streets_of_Astana.ogg-ce7210d9ea1f79f9d662738e7cf00b02.oggstr"
+
+[deps]
+
+source_file="res://audio/1Streets_of_Astana.ogg"
+dest_files=[ "res://.import/1Streets_of_Astana.ogg-ce7210d9ea1f79f9d662738e7cf00b02.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

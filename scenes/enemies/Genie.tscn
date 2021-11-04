@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/scripts/objects/Genie.gd" type="Script" id=1]
+[ext_resource path="res://scenes/textures/enemies/genie1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/textures/enemies/genie2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/textures/enemies/genie3.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -23.4457, -62.2264, -9.67562, -67.7874, 15.4813, -68.5818, 28.4545, -61.9576, 43.5511, -50.0451, 45.6696, -16.4143, 37.9901, 28.3385, 21.0423, 37.0772, 18.9238, 45.8159, -16.6148, 45.0142, -18.1495, 35.2235, -31.39, 31.781, -38.335, -4.94218, -29.5363, -51.3692 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 43.7975, 50.5801 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 45.8307, 53.8125 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "genie_alive"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "genie_death"
+length = 0.2
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Texture:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[node name="Genie" type="KinematicBody2D" groups=[
+"enemy_body",
+"pusher",
+]]
+collision_layer = 8
+script = ExtResource( 1 )
+is_trigon = false
+
+[node name="Texture" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )
+
+[node name="GenieCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 2.521, -9.24366 )
+shape = SubResource( 3 )
+
+[node name="StompDetector" type="Area2D" parent="."]
+modulate = Color( 0.290196, 0.929412, 0.027451, 1 )
+
+[node name="StompCollision" type="CollisionShape2D" parent="StompDetector"]
+position = Vector2( 2.71503, -9.77408 )
+shape = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+repeat = true
+playback_process_mode = 0
+playback/repeat = true
+
+[node name="FlipTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "genie_alive"
+anims/genie_alive = SubResource( 5 )
+anims/genie_death = SubResource( 6 )
+[connection signal="body_entered" from="StompDetector" to="." method="_on_stomp_body_entered"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]
+[connection signal="timeout" from="FlipTimer" to="." method="_on_flip_timeout"]

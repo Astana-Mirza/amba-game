@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/scripts/objects/ToothDwarf.gd" type="Script" id=1]
+[ext_resource path="res://scenes/textures/enemies/tooth_dwarf1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/textures/enemies/tooth_dwarf2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/textures/enemies/tooth_dwarf3.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.3943, 47.925 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -24.8704, -33.2223, -10.6403, -47.7159, 10.9683, -42.4455, 15.9752, -22.6815, 7.54254, -10.8231, 23.6172, 18.691, 12.5494, 51.8945, -16.4377, 51.3675, -25.3974, 22.9073, -17.7553, -6.60683 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 31.2258, 46.9699 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=5]
+resource_name = "tooth_dwarf_alive"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "tooth_dwarf_death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="ToothDwarf" type="KinematicBody2D" groups=[
+"enemy_body",
+]]
+collision_layer = 8
+motion/sync_to_physics = true
+script = ExtResource( 1 )
+is_trigon = false
+
+[node name="ToothDwarfCollision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )
+
+[node name="StompDetector" type="Area2D" parent="."]
+
+[node name="StompCollision" type="CollisionShape2D" parent="StompDetector"]
+modulate = Color( 0, 0.34902, 0.0117647, 1 )
+shape = SubResource( 3 )
+
+[node name="Texture" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 4 )
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "tooth_dwarf_alive"
+anims/tooth_dwarf_alive = SubResource( 5 )
+anims/tooth_dwarf_death = SubResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
+repeat = true
+playback_process_mode = 0
+playback/repeat = true
+
+[node name="FlipTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="body_entered" from="StompDetector" to="." method="_on_stomp_body_entered"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]
+[connection signal="timeout" from="FlipTimer" to="." method="_on_flip_timeout"]

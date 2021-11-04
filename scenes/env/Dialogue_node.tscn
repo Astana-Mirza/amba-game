@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/scripts/env/Dialogue_node.gd" type="Script" id=1]
+[ext_resource path="res://Comic Sans_ru_en.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/textures/env/light_b.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 85.5676, 76.1192 )
+
+[sub_resource type="CanvasItemMaterial" id=2]
+light_mode = 1
+
+[sub_resource type="DynamicFont" id=3]
+size = 275
+font_data = ExtResource( 2 )
+
+[sub_resource type="CanvasItemMaterial" id=4]
+light_mode = 1
+
+[sub_resource type="DynamicFont" id=5]
+size = 250
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 150
+font_data = ExtResource( 2 )
+
+[node name="dialogue_node" type="Area2D"]
+script = ExtResource( 1 )
+active = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="dialogue_placer" type="CanvasLayer" parent="."]
+
+[node name="text" type="Label" parent="dialogue_placer"]
+material = SubResource( 2 )
+margin_left = 33.0
+margin_top = 638.0
+margin_right = 12208.0
+margin_bottom = 1190.0
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = SubResource( 3 )
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+percent_visible = 0.0
+max_lines_visible = 1
+
+[node name="speaker_name" type="Label" parent="dialogue_placer"]
+visible = false
+material = SubResource( 4 )
+margin_left = 132.0
+margin_top = 605.0
+margin_right = 10355.0
+margin_bottom = 872.0
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = SubResource( 5 )
+text = "ИМЯ"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+max_lines_visible = 1
+
+[node name="text_timer" type="Timer" parent="dialogue_placer"]
+wait_time = 0.05
+
+[node name="text_box" type="Sprite" parent="dialogue_placer"]
+visible = false
+modulate = Color( 0, 0, 0, 0.6 )
+position = Vector2( -3.41278, 595.918 )
+scale = Vector2( 647.497, 64.2953 )
+z_index = -1
+texture = ExtResource( 3 )
+centered = false
+
+[node name="next" type="Label" parent="dialogue_placer"]
+visible = false
+material = SubResource( 4 )
+margin_left = 1123.93
+margin_top = 584.133
+margin_right = 3147.93
+margin_bottom = 1205.13
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = SubResource( 6 )
+text = "[E] Далее"
+align = 1
+valign = 1
+uppercase = true
+max_lines_visible = 1
+[connection signal="body_entered" from="." to="." method="_on_dialogue_node_body_entered"]
+[connection signal="timeout" from="dialogue_placer/text_timer" to="." method="_on_text_timer_timeout"]

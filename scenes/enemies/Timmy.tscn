@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/scripts/objects/Timmy.gd" type="Script" id=1]
+[ext_resource path="res://scenes/textures/enemies/timmy_black_cap1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/textures/enemies/timmy_black_cap2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/textures/enemies/timmy_black_cap3.png" type="Texture" id=4]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+cull_mode = 1
+polygon = PoolVector2Array( -13.2883, -11.7166, -45.7783, -8.7083, -45.1766, 8.74004, -10.2799, 18.3667, -9.67827, 53.2634, 12.5834, 55.0684, 11.3801, 11.1467, 50.4884, 11.7484, 50.4884, -8.10663, 11.3801, -15.9283, 10.7784, -45.41, -16.8983, -44.2066 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "timmy",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 44.6, 50.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 42.347, 50.4267 )
+
+[sub_resource type="Animation" id=5]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="Timmy" type="KinematicBody2D" groups=[
+"enemy_body",
+]]
+collision_layer = 8
+motion/sync_to_physics = true
+script = ExtResource( 1 )
+is_trigon = false
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )
+
+[node name="Texture" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+animation = "timmy"
+flip_h = true
+
+[node name="TimmyCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 7.5 )
+shape = SubResource( 3 )
+
+[node name="StompDetector" type="Area2D" parent="."]
+
+[node name="StompCollision" type="CollisionShape2D" parent="StompDetector"]
+modulate = Color( 0.172549, 1, 0, 1 )
+position = Vector2( 0, 7.9 )
+shape = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+repeat = true
+playback_process_mode = 0
+playback/repeat = true
+
+[node name="FlipTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "timmy_alive"
+anims/timmy_alive = SubResource( 5 )
+anims/timmy_death = SubResource( 6 )
+[connection signal="body_entered" from="StompDetector" to="." method="_on_stomp_body_entered"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]
+[connection signal="timeout" from="FlipTimer" to="." method="_on_flip_timeout"]

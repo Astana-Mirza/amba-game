@@ -1,0 +1,231 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://scenes/scripts/levels/3Traps.gd" type="Script" id=1]
+[ext_resource path="res://scenes/misc/Explosion.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/env/DeathScreen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/env/Pause.tscn" type="PackedScene" id=4]
+[ext_resource path="res://audio/3Traps.ogg" type="AudioStream" id=5]
+[ext_resource path="res://scenes/backgrounds/BackgroundFirstAct.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/textures/backgrounds/sky_boss.png" type="Texture" id=7]
+[ext_resource path="res://scenes/env/WallLamp.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/env/HoloWall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/env/TileMap.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/textures/misc/felix1.png" type="Texture" id=11]
+[ext_resource path="res://scenes/textures/misc/felix2.png" type="Texture" id=12]
+[ext_resource path="res://scenes/textures/misc/felix3.png" type="Texture" id=13]
+[ext_resource path="res://scenes/Mirza.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/env/Dialogue_node.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/env/Button.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/enemies/Saw.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/enemies/Cannon.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/env/Finish.tscn" type="PackedScene" id=19]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+export (String) var charname = \"Путешественник во времени\"
+"
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "speaking",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "happy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "static",
+"speed": 5.0
+} ]
+
+[node name="3Traps" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Explosions" type="Node2D" parent="."]
+
+[node name="Explosion1" parent="Explosions" instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 774.179, 0 )
+rotation = 4.39167e-005
+
+[node name="Explosion2" parent="Explosions" instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 1200, -200 )
+rotation = 4.39167e-005
+
+[node name="DeathScreen" parent="." instance=ExtResource( 3 )]
+
+[node name="Pause" parent="." instance=ExtResource( 4 )]
+
+[node name="Music" type="AudioStreamPlayer" parent="Pause"]
+stream = ExtResource( 5 )
+autoplay = true
+bus = "Music"
+
+[node name="Background" parent="." instance=ExtResource( 6 )]
+
+[node name="sky_default" parent="Background" index="0"]
+texture = ExtResource( 7 )
+
+[node name="WallLamp" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2158.36, 329.53 )
+
+[node name="HoloWall" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1861.05, 247.182 )
+
+[node name="TileMap" parent="." instance=ExtResource( 10 )]
+editor/display_folded = true
+tile_data = PoolIntArray( -720897, 5, 0, -786432, 5, 0, -786431, 5, 0, -786430, 5, 0, -786429, 5, 0, -786428, 5, 0, -786427, 5, 0, -786426, 5, 0, -786425, 5, 0, -786423, 5, 0, -786421, 5, 0, -786420, 5, 0, -786419, 5, 0, -786417, 5, 0, -786415, 5, 0, -786414, 5, 0, -786413, 5, 0, -786412, 5, 0, -786411, 5, 0, -786410, 5, 0, -786409, 5, 0, -786408, 5, 0, -786407, 5, 0, -786406, 5, 0, -786405, 5, 0, -786404, 5, 0, -786403, 5, 0, -786402, 5, 0, -786401, 5, 0, -655361, 5, 0, -720868, 5, 0, -720867, 5, 0, -720866, 5, 0, -720865, 5, 0, -720864, 5, 0, -589825, 5, 0, -655332, 5, 0, -655331, 5, 0, -655330, 5, 0, -655329, 5, 0, -655328, 5, 0, -655327, 5, 0, -524289, 5, 0, -589796, 5, 0, -589795, 5, 0, -589794, 5, 0, -589793, 5, 0, -589792, 5, 0, -589791, 5, 0, -589790, 5, 0, -458753, 5, 0, -524260, 5, 0, -524259, 5, 0, -524258, 5, 0, -524257, 5, 0, -524256, 5, 0, -524255, 5, 0, -524254, 5, 0, -524253, 5, 0, -393217, 5, 0, -458724, 5, 0, -458723, 5, 0, -458722, 5, 0, -458721, 5, 0, -458720, 5, 0, -458719, 5, 0, -458718, 5, 0, -458717, 5, 0, -458716, 5, 0, -327681, 5, 0, -393188, 5, 0, -393187, 5, 0, -393186, 5, 0, -393185, 5, 0, -393184, 5, 0, -393183, 5, 0, -393182, 5, 0, -393181, 5, 0, -393180, 5, 0, -393179, 5, 0, -262145, 5, 0, -327652, 5, 0, -327651, 5, 0, -327650, 5, 0, -327649, 5, 0, -327648, 5, 0, -327647, 5, 0, -327646, 5, 0, -327645, 5, 0, -327644, 5, 0, -327643, 5, 0, -327642, 5, 0, -196609, 5, 0, -262116, 5, 0, -262115, 5, 0, -262114, 5, 0, -262113, 5, 0, -262112, 5, 0, -262111, 5, 0, -262110, 5, 0, -262109, 5, 0, -262108, 5, 0, -262107, 5, 0, -262106, 5, 0, -262105, 5, 0, -131073, 5, 0, -196580, 5, 0, -196579, 5, 0, -196578, 5, 0, -196577, 5, 0, -196576, 5, 0, -196575, 5, 0, -196574, 5, 0, -196573, 5, 0, -196572, 5, 0, -196571, 5, 0, -196570, 5, 0, -196569, 5, 0, -196568, 5, 0, -65537, 5, 0, -131044, 5, 0, -131043, 5, 0, -131042, 5, 0, -131041, 5, 0, -131040, 5, 0, -131039, 5, 0, -131038, 5, 0, -131037, 5, 0, -131036, 5, 0, -131035, 5, 0, -131034, 5, 0, -131033, 5, 0, -131032, 5, 0, -131031, 5, 0, -1, 5, 0, -65508, 5, 0, -65507, 5, 0, -65506, 5, 0, -65505, 5, 0, -65504, 5, 0, -65503, 5, 0, -65502, 5, 0, -65501, 5, 0, -65500, 5, 0, -65499, 5, 0, -65498, 5, 0, -65497, 5, 0, -65496, 5, 0, -65495, 5, 0, -65494, 5, 0, 65535, 5, 0, 28, 5, 0, 29, 5, 0, 30, 5, 0, 31, 5, 0, 32, 5, 0, 33, 5, 0, 34, 5, 0, 35, 5, 0, 36, 5, 0, 37, 5, 0, 38, 5, 0, 39, 5, 0, 40, 5, 0, 41, 5, 0, 42, 5, 0, 43, 5, 0, 131071, 5, 0, 65564, 5, 0, 65565, 5, 0, 65566, 5, 0, 65567, 5, 0, 65568, 5, 0, 65569, 5, 0, 65570, 5, 0, 65571, 5, 0, 65572, 5, 0, 65573, 5, 0, 65574, 5, 0, 65575, 5, 0, 65576, 5, 0, 65577, 5, 0, 65578, 5, 0, 65579, 5, 0, 196607, 5, 0, 131100, 5, 0, 131101, 5, 0, 131102, 5, 0, 131103, 5, 0, 131104, 5, 0, 131105, 5, 0, 131106, 5, 0, 131107, 5, 0, 131108, 5, 0, 131109, 5, 0, 131110, 5, 0, 131111, 5, 0, 131112, 5, 0, 131113, 5, 0, 131114, 5, 0, 131115, 5, 0, 262143, 5, 0, 196616, 5, 0, 196617, 5, 0, 196618, 5, 0, 196622, 5, 0, 196623, 5, 0, 196624, 5, 0, 196647, 5, 0, 196648, 5, 0, 196649, 5, 0, 196650, 5, 0, 196651, 5, 0, 327679, 5, 0, 262183, 5, 0, 262184, 5, 0, 262185, 5, 0, 262186, 5, 0, 262187, 5, 0, 393215, 5, 0, 327719, 5, 0, 327720, 5, 0, 327721, 5, 0, 327722, 5, 0, 327723, 5, 0, 458751, 5, 0, 393255, 5, 0, 393256, 5, 0, 393257, 5, 0, 393258, 5, 0, 393259, 5, 0, 524287, 5, 0, 458791, 5, 0, 458792, 5, 0, 458793, 5, 0, 458794, 5, 0, 458795, 5, 0, 589823, 5, 0, 524327, 5, 0, 524328, 5, 0, 524329, 5, 0, 524330, 5, 0, 524331, 5, 0, 655359, 14, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 14, 0, 589830, 14, 0, 589831, 14, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 14, 0, 589836, 14, 0, 589837, 14, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 14, 0, 589842, 14, 0, 589843, 14, 0, 589844, 0, 0, 589845, 0, 0, 589846, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 589852, 0, 0, 589853, 0, 0, 589854, 0, 0, 589855, 0, 0, 589856, 0, 0, 589857, 0, 0, 589858, 0, 0, 589859, 0, 0, 589860, 0, 0, 589861, 11, 0, 589862, 12, 0, 589863, 5, 0, 589864, 14, 0, 589865, 14, 0, 589866, 14, 0, 589867, 14, 0, 720895, 6, 0, 655360, 6, 0, 655361, 6, 0, 655362, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0, 655370, 6, 0, 655371, 6, 0, 655372, 6, 0, 655373, 6, 0, 655374, 6, 0, 655375, 6, 0, 655376, 6, 0, 655377, 6, 0, 655378, 6, 0, 655379, 6, 0, 655380, 6, 0, 655381, 6, 0, 655382, 6, 0, 655383, 6, 0, 655384, 6, 0, 655385, 6, 0, 655386, 6, 0, 655387, 6, 0, 655388, 6, 0, 655389, 6, 0, 655390, 6, 0, 655391, 6, 0, 655392, 6, 0, 655393, 6, 0, 655394, 6, 0, 655395, 6, 0, 655396, 6, 0, 655397, 5, 0, 655398, 5, 0, 655399, 6, 0, 655400, 6, 0, 655401, 6, 0, 655402, 6, 0, 655403, 6, 0, 786431, 6, 0, 720896, 6, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720902, 6, 0, 720903, 6, 0, 720904, 6, 0, 720905, 6, 0, 720906, 6, 0, 720907, 6, 0, 720908, 6, 0, 720909, 6, 0, 720910, 6, 0, 720911, 6, 0, 720912, 6, 0, 720913, 6, 0, 720914, 6, 0, 720915, 6, 0, 720916, 6, 0, 720917, 6, 0, 720918, 6, 0, 720919, 6, 0, 720920, 6, 0, 720921, 6, 0, 720922, 6, 0, 720923, 6, 0, 720924, 6, 0, 720925, 6, 0, 720926, 6, 0, 720927, 6, 0, 720928, 6, 0, 720929, 6, 0, 720930, 6, 0, 720931, 6, 0, 720932, 6, 0, 720933, 5, 0, 720934, 5, 0, 720935, 6, 0, 720936, 6, 0, 720937, 6, 0, 720938, 6, 0, 720939, 6, 0 )
+
+[node name="Wall" parent="TileMap" index="0"]
+tile_data = PoolIntArray( 196636, 0, 0, 196637, 0, 0, 196638, 0, 0, 196639, 0, 0, 196640, 0, 0, 196641, 0, 0, 196642, 0, 0, 196643, 0, 0, 196644, 0, 0, 196645, 0, 0, 196646, 0, 0, 262172, 0, 0, 262173, 0, 0, 262174, 0, 0, 262175, 0, 0, 262176, 0, 0, 262177, 0, 0, 262178, 0, 0, 262179, 0, 0, 262180, 0, 0, 262181, 0, 0, 262182, 0, 0, 327708, 0, 0, 327709, 0, 0, 327710, 0, 0, 327711, 0, 0, 327712, 0, 0, 327713, 0, 0, 327714, 0, 0, 327715, 0, 0, 327716, 0, 0, 327717, 0, 0, 327718, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0, 393249, 0, 0, 393250, 0, 0, 393251, 0, 0, 393252, 0, 0, 393253, 0, 0, 393254, 0, 0, 458780, 0, 0, 458781, 0, 0, 458782, 0, 0, 458783, 0, 0, 458784, 0, 0, 458785, 0, 0, 458786, 0, 0, 458787, 0, 0, 458788, 0, 0, 458789, 0, 0, 458790, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 589861, 0, 0, 589862, 0, 0, 655398, 0, 0, 720934, 0, 0 )
+
+[node name="Spikes" parent="TileMap" index="1"]
+tile_data = PoolIntArray( 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0 )
+
+[node name="Felix" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 140.291, 519.717 )
+scale = Vector2( 2, 2 )
+script = SubResource( 1 )
+
+[node name="Texture" type="AnimatedSprite" parent="Felix"]
+position = Vector2( 17.7973, 1.02954 )
+frames = SubResource( 2 )
+animation = "static"
+playing = true
+
+[node name="Mirza" parent="." instance=ExtResource( 14 )]
+position = Vector2( 72.3912, 497.513 )
+camera_bounds = [ 0, -3500, 2800, 720 ]
+
+[node name="dialogue_node1" parent="." instance=ExtResource( 15 )]
+position = Vector2( 136.725, 510.913 )
+actor_1_text_color = Color( 0.156863, 0.898039, 0.219608, 1 )
+actor_1 = NodePath("../../3Traps/Felix")
+actor_mirza = NodePath("../../3Traps/Mirza")
+dialogue_lines = [ "actor_1", "play_sprite_animation", "speaking", "Привет! Я предвижу твои вопросы, но не могу ответить на все.", "Я из будущего, в котором Чёрные Колпаки победили.", "Ты попал в одну из их ловушек, а город взорвали.", "Но ты передал мне подсказки, с помощью которых можно обезвредить бомбы.", "Нажми на кнопку, номер которой совпадает с номером верного ответа на вопрос.", "Если ошибёшься, тут всё взлетит на воздух!", "play_sprite_animation", "static", "actor_mirza", "Ладно, давайте начнём.", "actor_1", "play_sprite_animation", "speaking", "Первый вопрос: 12 человек пожали друг другу руки.", " Сколько всего было рукопожатий?", "1) 144;   2) 66;    3) 12", "Нажми на нужную кнопку и вернись сюда.", "play_sprite_animation", "static", "end_dialogue" ]
+
+[node name="dialogue_node2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 137.802, 508.807 )
+actor_1_text_color = Color( 0.156863, 0.898039, 0.219608, 1 )
+actor_1 = NodePath("../Felix")
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_1", "play_sprite_animation", "speaking", "Как называется казахская игра, имитирующая скачки?", "1) Асыки;  2) Орамал;  3) Байга", "play_sprite_animation", "static", "end_dialogue" ]
+active = false
+
+[node name="dialogue_node3" parent="." instance=ExtResource( 15 )]
+position = Vector2( 137.802, 508.807 )
+actor_1_text_color = Color( 0.156863, 0.898039, 0.219608, 1 )
+actor_1 = NodePath("../Felix")
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_1", "play_sprite_animation", "speaking", "Перед тобой Бургер Кинг, KFC и Макдональдс. Что ты выберешь?", "1) Макдональдс;  2) Бургер Кинг;  3) KFC", "play_sprite_animation", "static", "end_dialogue" ]
+active = false
+
+[node name="dialogue_node4" parent="." instance=ExtResource( 15 )]
+position = Vector2( 137.802, 508.807 )
+actor_1_text_color = Color( 0.156863, 0.898039, 0.219608, 1 )
+actor_1 = NodePath("../Felix")
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_1", "play_sprite_animation", "speaking", "Кто такой гидроцефал?", "1) Больной человек;  2) Динозавр;  3) Конь Александра Македонского", "play_sprite_animation", "static", "end_dialogue" ]
+active = false
+
+[node name="dialogue_node5" parent="." instance=ExtResource( 15 )]
+position = Vector2( 137.802, 508.807 )
+actor_1_text_color = Color( 0.156863, 0.898039, 0.219608, 1 )
+actor_1 = NodePath("../Felix")
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_1", "play_sprite_animation", "speaking", "Кто быстрее: Флэш или Супермен?", "1) Флэш;  2) Арыстанчабан;  3) Флэш", "play_sprite_animation", "static", "end_dialogue" ]
+active = false
+
+[node name="dialogue_node6" parent="." instance=ExtResource( 15 )]
+position = Vector2( 1545.07, 500.935 )
+scale = Vector2( 3, 1 )
+actor_1_text_color = Color( 0.156863, 0.898039, 0.219608, 1 )
+actor_1 = NodePath("../Felix")
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_1", "play_sprite_animation", "speaking", "Я знал, что ты продвинутый.", "Но, козе понятно, нужно спешить, Астана всё ещё в опасности!", "play_sprite_animation", "static", "end_dialogue" ]
+active = false
+
+[node name="dialogue_node6_alt" parent="." instance=ExtResource( 15 )]
+position = Vector2( 1545.07, 500.935 )
+scale = Vector2( 3, 1 )
+actor_1_text_color = Color( 0.156863, 0.898039, 0.219608, 1 )
+actor_1 = NodePath("../Felix")
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_1", "play_sprite_animation", "speaking", "Я знал, что ты продвинутый.", "Ты, я смотрю, тоже из будущего...", "Иначе как бы ты нажимал на верные кнопки, не зная вопроса? Хе-хе...", "Но, козе понятно, нужно спешить, Астана всё ещё в опасности!", "play_sprite_animation", "static", "end_dialogue" ]
+active = false
+
+[node name="dialogue_node_end" parent="." instance=ExtResource( 15 )]
+position = Vector2( 2161.67, 399.911 )
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_mirza", "Серьёзно? Тупик?", "Придётся идти через канализацию", "end_dialogue" ]
+
+[node name="Button1" parent="." instance=ExtResource( 16 )]
+position = Vector2( 612.034, 138.358 )
+enable_timer = true
+delay = 5.0
+
+[node name="Button2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 812.929, -25.0361 )
+enable_timer = true
+delay = 5.0
+
+[node name="Button3" parent="." instance=ExtResource( 16 )]
+position = Vector2( 1000.8, 140.38 )
+enable_timer = true
+delay = 5.0
+
+[node name="Saw1" parent="." instance=ExtResource( 17 )]
+position = Vector2( 608.901, 142.543 )
+Radius = 180
+
+[node name="Saw2" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1001.78, 144.204 )
+Radius = -180
+
+[node name="Cannons" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Cannon1" parent="Cannons" instance=ExtResource( 18 )]
+position = Vector2( 546.003, -735.244 )
+vertical = true
+flip_h = true
+
+[node name="Cannon2" parent="Cannons" instance=ExtResource( 18 )]
+position = Vector2( 672.252, -738.502 )
+vertical = true
+flip_h = true
+
+[node name="Cannon3" parent="Cannons" instance=ExtResource( 18 )]
+position = Vector2( 928.821, -736.873 )
+vertical = true
+flip_h = true
+
+[node name="Cannon4" parent="Cannons" instance=ExtResource( 18 )]
+position = Vector2( 1055.88, -738.502 )
+vertical = true
+flip_h = true
+
+[node name="Finish" parent="." instance=ExtResource( 19 )]
+position = Vector2( 2332.26, 142.076 )
+next_level = "4Collector"
+number_of_level = 3
+boss = true
+boss_name = "Бомба Ночного Наурыза"
+[connection signal="animation_finished" from="Explosions/Explosion1/AnimationPlayer" to="." method="_on_explosion_animation_finished"]
+[connection signal="button_pressed" from="Button1" to="." method="_on_button1_pressed"]
+[connection signal="button_pressed" from="Button2" to="." method="_on_button2_pressed"]
+[connection signal="button_pressed" from="Button3" to="." method="_on_button3_pressed"]
+
+[editable path="Explosions/Explosion1"]
+
+[editable path="Background"]
+
+[editable path="TileMap"]

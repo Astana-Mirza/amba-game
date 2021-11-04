@@ -1,0 +1,129 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://scenes/scripts/levels/6Smell.gd" type="Script" id=1]
+[ext_resource path="res://scenes/backgrounds/BackgroundSecondAct.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/env/Pause.tscn" type="PackedScene" id=3]
+[ext_resource path="res://audio/6Smell.ogg" type="AudioStream" id=4]
+[ext_resource path="res://scenes/env/DeathScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/env/Finish.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/misc/Explosion.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/env/TileMap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Mirza.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/textures/misc/nazargun_bottom1.png" type="Texture" id=10]
+[ext_resource path="res://scenes/textures/misc/nazargun_bottom2.png" type="Texture" id=11]
+[ext_resource path="res://scenes/textures/misc/nazargun_bottom3.png" type="Texture" id=12]
+[ext_resource path="res://scenes/textures/misc/nazargun_right.png" type="Texture" id=13]
+[ext_resource path="res://scenes/textures/misc/nazargun_left.png" type="Texture" id=14]
+[ext_resource path="res://scenes/env/Dialogue_node.tscn" type="PackedScene" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 108.792, 89.3934 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="6Smell" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" parent="." instance=ExtResource( 2 )]
+layer = -1
+
+[node name="Pause" parent="." instance=ExtResource( 3 )]
+
+[node name="Music" type="AudioStreamPlayer" parent="Pause"]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "Music"
+
+[node name="DeathScreen" parent="." instance=ExtResource( 5 )]
+
+[node name="Finish" parent="." instance=ExtResource( 6 )]
+position = Vector2( 144.642, -1299.51 )
+rotation = 1.5708
+next_level = "7Zeppelin"
+number_of_level = 6
+boss = true
+boss_name = "Орда зубных карликов"
+
+[node name="Finish2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1116.21, -406.072 )
+next_level = "7Zeppelin"
+number_of_level = 6
+boss = true
+boss_name = "Ты убежал как трус, и лопнувшая от смеха орда зубных карликов"
+
+[node name="Explosion" parent="." instance=ExtResource( 7 )]
+pause_mode = 2
+position = Vector2( 0, -200 )
+rotation = 0.698129
+
+[node name="TileMap" parent="." instance=ExtResource( 8 )]
+position = Vector2( -1000, -470 )
+tile_data = PoolIntArray( -1376257, 5, 0, -1441792, 5, 0, -1441791, 5, 0, -1441790, 5, 0, -1441789, 5, 0, -1441788, 5, 0, -1441787, 5, 0, -1441786, 5, 0, -1441785, 5, 0, -1441784, 5, 0, -1441783, 5, 0, -1441782, 5, 0, -1441772, 5, 0, -1441771, 5, 0, -1441770, 5, 0, -1441769, 5, 0, -1441768, 5, 0, -1441767, 5, 0, -1441766, 5, 0, -1441765, 5, 0, -1441764, 5, 0, -1441763, 5, 0, -1441762, 5, 0, -1441761, 5, 0, -1441760, 5, 0, -1441759, 5, 0, -1310721, 5, 0, -1376256, 5, 0, -1376255, 5, 0, -1376254, 5, 0, -1376253, 5, 0, -1376252, 5, 0, -1376251, 5, 0, -1376250, 5, 0, -1376249, 5, 0, -1376248, 5, 0, -1376247, 5, 0, -1376246, 5, 0, -1376236, 5, 0, -1376235, 5, 0, -1376234, 5, 0, -1376233, 5, 0, -1376232, 5, 0, -1376231, 5, 0, -1376230, 5, 0, -1376229, 5, 0, -1376228, 5, 0, -1376227, 5, 0, -1376226, 5, 0, -1376225, 5, 0, -1376224, 5, 0, -1376223, 5, 0, -1245185, 5, 0, -1310720, 5, 0, -1310719, 5, 0, -1310718, 5, 0, -1310717, 5, 0, -1310716, 5, 0, -1310715, 5, 0, -1310714, 5, 0, -1310713, 5, 0, -1310712, 5, 0, -1310711, 5, 0, -1310710, 5, 0, -1310700, 5, 0, -1310699, 5, 0, -1310698, 5, 0, -1310697, 5, 0, -1310696, 5, 0, -1310695, 5, 0, -1310694, 5, 0, -1310693, 5, 0, -1310692, 5, 0, -1310691, 5, 0, -1310690, 5, 0, -1310689, 5, 0, -1310688, 5, 0, -1310687, 5, 0, -1179649, 5, 0, -1245184, 5, 0, -1245183, 5, 0, -1245182, 5, 0, -1245181, 5, 0, -1245180, 5, 0, -1245179, 5, 0, -1245178, 5, 0, -1245177, 5, 0, -1245176, 5, 0, -1245175, 5, 0, -1245174, 5, 0, -1245164, 5, 0, -1245163, 5, 0, -1245162, 5, 0, -1245161, 5, 0, -1245160, 5, 0, -1245159, 5, 0, -1245158, 5, 0, -1245157, 5, 0, -1245156, 5, 0, -1245155, 5, 0, -1245154, 5, 0, -1245153, 5, 0, -1245152, 5, 0, -1245151, 5, 0, -1114113, 5, 0, -1179648, 5, 0, -1179647, 5, 0, -1179646, 5, 0, -1179645, 5, 0, -1179644, 5, 0, -1179643, 5, 0, -1179642, 5, 0, -1179641, 5, 0, -1179640, 5, 0, -1179639, 5, 0, -1179638, 5, 0, -1179628, 5, 0, -1179627, 5, 0, -1179626, 5, 0, -1179625, 5, 0, -1179624, 5, 0, -1179623, 5, 0, -1179622, 5, 0, -1179621, 5, 0, -1179620, 5, 0, -1179619, 5, 0, -1179618, 5, 0, -1179617, 5, 0, -1179616, 5, 0, -1179615, 5, 0, -1048577, 5, 0, -1114112, 5, 0, -1114111, 5, 0, -1114110, 5, 0, -1114109, 5, 0, -1114108, 5, 0, -1114107, 5, 0, -1114106, 5, 0, -1114105, 5, 0, -1114104, 5, 0, -1114103, 5, 0, -1114102, 5, 0, -1114092, 5, 0, -1114091, 5, 0, -1114090, 5, 0, -1114089, 5, 0, -1114088, 5, 0, -1114087, 5, 0, -1114086, 5, 0, -1114085, 5, 0, -1114084, 5, 0, -1114083, 5, 0, -1114082, 5, 0, -1114081, 5, 0, -1114080, 5, 0, -1114079, 5, 0, -983041, 5, 0, -1048576, 5, 0, -1048575, 5, 0, -1048574, 5, 0, -1048573, 5, 0, -1048572, 5, 0, -1048571, 5, 0, -1048570, 5, 0, -1048569, 5, 0, -1048568, 5, 0, -1048567, 5, 0, -1048566, 5, 0, -1048556, 5, 0, -1048555, 5, 0, -1048554, 5, 0, -1048553, 5, 0, -1048552, 5, 0, -1048551, 5, 0, -1048550, 5, 0, -1048549, 5, 0, -1048548, 5, 0, -1048547, 5, 0, -1048546, 5, 0, -1048545, 5, 0, -1048544, 5, 0, -1048543, 5, 0, -917505, 5, 0, -983040, 5, 0, -983039, 5, 0, -983038, 5, 0, -983037, 5, 0, -983036, 5, 0, -983035, 5, 0, -983034, 5, 0, -983033, 5, 0, -983032, 5, 0, -983031, 5, 0, -983030, 5, 0, -983020, 5, 0, -983019, 5, 0, -983018, 5, 0, -983017, 5, 0, -983016, 5, 0, -983015, 5, 0, -983014, 5, 0, -983013, 5, 0, -983012, 5, 0, -983011, 5, 0, -983010, 5, 0, -983009, 5, 0, -983008, 5, 0, -983007, 5, 0, -851969, 5, 0, -917504, 5, 0, -917503, 5, 0, -917502, 5, 0, -917501, 5, 0, -917500, 5, 0, -917499, 5, 0, -917498, 5, 0, -917497, 5, 0, -917496, 5, 0, -917495, 5, 0, -917494, 5, 0, -917484, 5, 0, -917483, 5, 0, -917482, 5, 0, -917481, 5, 0, -917480, 5, 0, -917479, 5, 0, -917478, 5, 0, -917477, 5, 0, -917476, 5, 0, -917475, 5, 0, -917474, 5, 0, -917473, 5, 0, -917472, 5, 0, -917471, 5, 0, -786433, 5, 0, -851968, 5, 0, -851967, 5, 0, -851966, 5, 0, -851965, 5, 0, -851964, 5, 0, -851963, 5, 0, -851962, 5, 0, -851961, 5, 0, -851960, 5, 0, -851959, 5, 0, -851958, 5, 0, -851948, 5, 0, -851947, 5, 0, -851946, 5, 0, -851945, 5, 0, -851944, 5, 0, -851943, 5, 0, -851942, 5, 0, -851941, 5, 0, -851940, 5, 0, -851939, 5, 0, -851938, 5, 0, -851937, 5, 0, -851936, 5, 0, -851935, 5, 0, -720897, 5, 0, -786399, 5, 0, -655361, 5, 0, -720863, 5, 0, -589825, 5, 0, -655327, 5, 0, -524289, 5, 0, -589791, 5, 0, -458753, 5, 0, -524255, 5, 0, -393217, 5, 0, -458719, 5, 0, -327681, 5, 0, -393183, 5, 0, -262145, 5, 0, -327647, 5, 0, -196609, 5, 0, -262111, 5, 0, -131073, 5, 0, -196575, 5, 0, -65537, 5, 0, -131039, 5, 0, -1, 5, 0, -65503, 5, 0, 65535, 5, 0, 33, 5, 0, 131071, 5, 0, 65569, 5, 0, 196607, 5, 0, 131105, 5, 0, 262143, 5, 0, 196641, 5, 0, 327679, 5, 0, 262177, 5, 0, 393215, 5, 0, 327713, 5, 0, 458751, 5, 0, 393249, 5, 0, 524287, 5, 0, 458785, 5, 0, 589823, 5, 0, 524321, 5, 0, 655359, 14, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589845, 0, 0, 589846, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 589852, 0, 0, 589853, 0, 0, 589854, 0, 0, 589855, 0, 0, 589856, 0, 0, 589857, 14, 0, 720895, 6, 0, 655360, 6, 0, 655361, 6, 0, 655362, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0, 655370, 6, 0, 655371, 6, 0, 655372, 6, 0, 655373, 6, 0, 655374, 6, 0, 655375, 6, 0, 655376, 6, 0, 655377, 6, 0, 655378, 6, 0, 655379, 6, 0, 655380, 6, 0, 655381, 6, 0, 655382, 6, 0, 655383, 6, 0, 655384, 6, 0, 655385, 6, 0, 655386, 6, 0, 655387, 6, 0, 655388, 6, 0, 655389, 6, 0, 655390, 6, 0, 655391, 6, 0, 655392, 6, 0, 655393, 6, 0, 786431, 6, 0, 720896, 6, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720902, 6, 0, 720903, 6, 0, 720904, 6, 0, 720905, 6, 0, 720906, 6, 0, 720907, 6, 0, 720908, 6, 0, 720909, 6, 0, 720910, 6, 0, 720911, 6, 0, 720912, 6, 0, 720913, 6, 0, 720914, 6, 0, 720915, 6, 0, 720916, 6, 0, 720917, 6, 0, 720918, 6, 0, 720919, 6, 0, 720920, 6, 0, 720921, 6, 0, 720922, 6, 0, 720923, 6, 0, 720924, 6, 0, 720925, 6, 0, 720926, 6, 0, 720927, 6, 0, 720928, 6, 0, 720929, 6, 0 )
+
+[node name="Mirza" parent="." instance=ExtResource( 9 )]
+position = Vector2( -893.493, 52.0571 )
+camera_bounds = [ -1000, -3500, 870, 200 ]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="NazarGun" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NazarGun"]
+position = Vector2( 7.40251, 24.0582 )
+shape = SubResource( 1 )
+
+[node name="TextureBottom" type="AnimatedSprite" parent="NazarGun"]
+position = Vector2( 2.12086, 40.0002 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+
+[node name="TextureMain" type="AnimatedSprite" parent="NazarGun"]
+position = Vector2( -1.87057, 5.99876 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 3 )
+
+[node name="ShotTimer" type="Timer" parent="NazarGun"]
+wait_time = 0.5
+one_shot = true
+
+[node name="dialogue_node1" parent="." instance=ExtResource( 15 )]
+position = Vector2( -884.665, -23.6741 )
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_mirza", "ЭТО ЖЕ НАЗАРГАН!", "Так вот, где он его прячет...", "end_dialogue" ]
+
+[node name="dialogue_node2" parent="." instance=ExtResource( 15 )]
+position = Vector2( -289.031, -137.918 )
+scale = Vector2( 1, 2 )
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_mirza", "Что это за запах?", "Святои Боже! Зубные карлики прорвались сюда!", "Грех не воспользоваться пушкой.", "end_dialogue" ]
+
+[node name="dialogue_node3" parent="." instance=ExtResource( 15 )]
+position = Vector2( 67.7465, 28.5849 )
+actor_1_text_color = Color( 0.956863, 0.121569, 0.121569, 1 )
+actor_1 = NodePath("..")
+actor_mirza = NodePath("../Mirza")
+dialogue_lines = [ "actor_mirza", "Ухх, вроде, всё.", "А что это за кнопка?", "actor_1", "Система самоуничтожения запущена. Вы будете катапультированы.", "actor_mirza", "Серьёзно? Так банально? Кнопка же даже не красная.", "end_dialogue" ]
+active = false
+[connection signal="unpaused" from="Pause" to="." method="_on_unpaused"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="body_entered" from="NazarGun" to="." method="_on_NazarGun_body_entered"]
+[connection signal="timeout" from="NazarGun/ShotTimer" to="." method="_on_ShotTimer_timeout"]
+[connection signal="dialogue_finished" from="dialogue_node3" to="." method="_on_dialogue3_finished"]

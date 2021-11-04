@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/textures/enemies/boulder.png" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 251.235
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 251.221
+
+[node name="Boulder" type="RigidBody2D" groups=[
+"enemy_body",
+"boulder",
+]]
+position = Vector2( 130.114, -1118.34 )
+collision_layer = 8
+mass = 927.19
+gravity_scale = 13.05
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color( 0, 1, 0.133333, 1 )
+shape = SubResource( 1 )
+
+[node name="BoulderCollision" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="boulder" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 1 )
